@@ -68,6 +68,7 @@ public class ObservationCreatedEventHandler : INotificationHandler<ObservationCr
                 }
             }
 
+            //it doesn't make any sense to keep last records in memory, just anough calculate last 3 average
             cashedObservation.Add(observation);
         }
     }
