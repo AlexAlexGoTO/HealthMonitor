@@ -1,0 +1,15 @@
+D:\Work\Medixine\MedixineMonitor\MedixineMonitor.Application\bin\Debug\net6.0\MedixineMonitor.Application.deps.json
+D:\Work\Medixine\MedixineMonitor\MedixineMonitor.Application\bin\Debug\net6.0\MedixineMonitor.Application.dll
+D:\Work\Medixine\MedixineMonitor\MedixineMonitor.Application\bin\Debug\net6.0\MedixineMonitor.Application.pdb
+D:\Work\Medixine\MedixineMonitor\MedixineMonitor.Application\bin\Debug\net6.0\MedixineMonitor.Domain.dll
+D:\Work\Medixine\MedixineMonitor\MedixineMonitor.Application\bin\Debug\net6.0\MedixineMonitor.Domain.pdb
+D:\Work\Medixine\MedixineMonitor\MedixineMonitor.Application\obj\Debug\net6.0\MedixineMonitor.Application.csproj.AssemblyReference.cache
+D:\Work\Medixine\MedixineMonitor\MedixineMonitor.Application\obj\Debug\net6.0\MedixineMonitor.Application.GeneratedMSBuildEditorConfig.editorconfig
+D:\Work\Medixine\MedixineMonitor\MedixineMonitor.Application\obj\Debug\net6.0\MedixineMonitor.Application.AssemblyInfoInputs.cache
+D:\Work\Medixine\MedixineMonitor\MedixineMonitor.Application\obj\Debug\net6.0\MedixineMonitor.Application.AssemblyInfo.cs
+D:\Work\Medixine\MedixineMonitor\MedixineMonitor.Application\obj\Debug\net6.0\MedixineMonitor.Application.csproj.CoreCompileInputs.cache
+D:\Work\Medixine\MedixineMonitor\MedixineMonitor.Application\obj\Debug\net6.0\MedixineMonitor.Application.csproj.CopyComplete
+D:\Work\Medixine\MedixineMonitor\MedixineMonitor.Application\obj\Debug\net6.0\MedixineMonitor.Application.dll
+D:\Work\Medixine\MedixineMonitor\MedixineMonitor.Application\obj\Debug\net6.0\refint\MedixineMonitor.Application.dll
+D:\Work\Medixine\MedixineMonitor\MedixineMonitor.Application\obj\Debug\net6.0\MedixineMonitor.Application.pdb
+D:\Work\Medixine\MedixineMonitor\MedixineMonitor.Application\obj\Debug\net6.0\ref\MedixineMonitor.Application.dll

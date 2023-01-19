@@ -1,0 +1,18 @@
+tr.data {
+    cursor: pointer;
+}
+
+.form-group {
+    margin-bottom: 8px;
+}
+
+.form-group label{
+    margin-bottom: 5px;
+}
+
+.update-observation-form {
+    padding: 14px;
+}
+.create-observation {
+    margin-left: 14px;
+}

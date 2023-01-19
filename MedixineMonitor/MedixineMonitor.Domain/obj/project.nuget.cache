@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "5DMFsWinz3lSmBXeDyBTg2BuJdJmwLkZt8t8ohS1LSG9az60J7A26CyH1nB0+Fxy5BS5HP0xrbJMnHEj5Mcc3A==",
+  "success": true,
+  "projectFilePath": "D:\\Work\\Medixine\\MedixineMonitor\\MedixineMonitor.Domain\\MedixineMonitor.Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\alexk\\.nuget\\packages\\mediatr\\11.0.0\\mediatr.11.0.0.nupkg.sha512",
+    "C:\\Users\\alexk\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
