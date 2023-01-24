@@ -6,3 +6,13 @@
 .logo-medix {
     height: 30px;
 }
+
+.alert-badge {
+    background-color: #0a78b7;
+    color: white;
+    width: 25px;
+    display: inline-block;
+    text-align: center;
+    font-weight: 700;
+    border-radius: 0.25rem;
+}

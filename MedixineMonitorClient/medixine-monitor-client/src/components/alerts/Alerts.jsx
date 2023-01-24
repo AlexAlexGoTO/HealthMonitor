@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useEffect } from 'react';
+import { AlertContext } from '../../alert-context';
 
 import * as signalR from '@microsoft/signalr'
 
@@ -7,6 +8,7 @@ const API_URL = 'https://localhost:7289'
 
 const Alerts = () => {
     const [alerts, setAlerts] = useState([]);
+    const alertContext = useContext(AlertContext);
 
     const getAlerts = async () => {
         const response = await fetch(`${API_URL}/alerts`);
@@ -31,18 +33,19 @@ const Alerts = () => {
     }
 
     useEffect(() => {
-        let connection = new signalR.HubConnectionBuilder()
-        .withUrl(`${API_URL}/alertNotifications`, {
-            skipNegotiation: true,
-            transport: signalR.HttpTransportType.WebSockets
-        })
-        .build();
+        alertContext.resetBadgeNumber();
+        // let connection = new signalR.HubConnectionBuilder()
+        // .withUrl(`${API_URL}/alertNotifications`, {
+        //     skipNegotiation: true,
+        //     transport: signalR.HttpTransportType.WebSockets
+        // })
+        // .build();
 
-        connection.start()
+        // connection.start()
 
-        connection.on("channel", (data) => {
-            setAlerts(prevSate => ([ ...prevSate, data]));
-        })
+        // connection.on("channel", (data) => {
+        //     setAlerts(prevSate => ([ ...prevSate, data]));
+        // })
 
         getAlerts();
     }, [])

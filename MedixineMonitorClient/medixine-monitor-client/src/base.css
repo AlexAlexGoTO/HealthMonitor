@@ -1,0 +1,12 @@
+/*some criminal*/
+.alert-info {
+    width: 30%;
+    right: 10px;
+    margin-left: auto; 
+    margin-right: 0;
+}
+
+.custom-alerts {
+    bottom: 5px;
+    position: fixed;
+}

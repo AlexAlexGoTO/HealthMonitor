@@ -5,6 +5,7 @@ using MedixineMonitor.Domain.Entities;
 using MedixineMonitor.Domain.Events;
 using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace MedixineMonitor.Application.Observations.EventHandlers;
 
@@ -37,10 +38,10 @@ public class ObservationCreatedEventHandler : INotificationHandler<ObservationCr
         //in current scenario we keep only last few observations in memory
         //also it should be based on some logic and criterias so it can be different for each Type of observation
         //Also criterias should be specific individially for each person +/or default value
-        var cashedObservation = _cacheStore.Get<List<Observation>>($"{observation.PatientId}_{observation.Type}");
+        var cashedObservation = _cacheStore.Get<List<double>>($"{observation.PatientId}_{observation.Type}");
         if (cashedObservation == null || cashedObservation.Count == 0)
         {
-            var toCache = new List<Observation>() { observation };
+            var toCache = new List<double>() { observation.Value };
 
             _cacheStore.Add(toCache, $"{observation.PatientId}_{observation.Type}", TimeSpan.FromDays(5));
         }
@@ -48,28 +49,30 @@ public class ObservationCreatedEventHandler : INotificationHandler<ObservationCr
         {
             if (cashedObservation.Count > 2)
             {
-                var avarage = cashedObservation.TakeLast(3).Average(co => co.Value);
+                var avarage = cashedObservation.TakeLast(3).Average();
 
-                var permissibleValue = avarage += avarage * 0.05;
+                //allowed value is value + 5%
+                var allowedValue = avarage += avarage * 0.05;
 
-                if (observation.Value > permissibleValue)
+                if (observation.Value > allowedValue)
                 {
                     var alert = new SystemAlert
                     {
                         Id = Guid.NewGuid(),
                         ItemId = observation.Id,
                         PatientId = observation.PatientId,
-                        Message = $"Allowed value exceeded. Type: {observation.Type}; Description: {observation.Description}"
+                        Message = $"{observation.Type.ToString()}; Message: Allowed value exceeded."
                     };
 
                     await _hubContext.Clients.All.SendAsync("channel", alert);
 
                     await _alertService.CreateAlert(alert);
                 }
+
+                cashedObservation.RemoveAt(0);
             }
 
-            //it doesn't make any sense to keep last records in memory, just anough calculate last 3 average
-            cashedObservation.Add(observation);
+            cashedObservation.Add(observation.Value);
         }
     }
 }

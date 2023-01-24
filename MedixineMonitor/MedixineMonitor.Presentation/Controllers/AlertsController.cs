@@ -1,7 +1,11 @@
-﻿using MedixineMonitor.Application.Common.Interfaces;
+﻿using MedixineMonitor.Application.Common.Abstraction;
+using MedixineMonitor.Application.Common.Interfaces;
 using MedixineMonitor.Application.Observations.Queries;
+using MedixineMonitor.Domain.Entities;
+using MedixineMonitor.Domain.Enums;
 using MedixineMonitor.Presentation.Controllers.Base;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 
 namespace MedixineMonitor.Presentation.Controllers;
 
@@ -9,18 +13,21 @@ namespace MedixineMonitor.Presentation.Controllers;
 [Route("[controller]")]
 public class AlertsController : ApiControllerBase
 {
-    private readonly IAlertService alertService;
+    private readonly IAlertService _alertService;
+    private readonly IHubContext<BaseAlertHub> _hubContext;
 
     public AlertsController(
-        IAlertService alertService)
+        IAlertService alertService, 
+        IHubContext<BaseAlertHub> hubContext)
     {
-        this.alertService = alertService;
+        _alertService = alertService;
+        _hubContext = hubContext;
     }
 
     [HttpGet]
     public async Task<ActionResult> Get()
     {
-        var result = await alertService.GetAlerts();
+        var result = await _alertService.GetAlerts();
 
         return Ok(result);
     }
@@ -28,7 +35,7 @@ public class AlertsController : ApiControllerBase
     [HttpDelete("{id}")]
     public async Task<ActionResult> Delete(Guid id)
     {
-        await alertService.RemoveAlert(id);
+        await _alertService.RemoveAlert(id);
 
         return Ok();
     }
