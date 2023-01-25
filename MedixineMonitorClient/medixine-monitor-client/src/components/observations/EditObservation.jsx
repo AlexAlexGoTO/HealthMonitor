@@ -29,11 +29,11 @@ const EditObservation = ({ id }) => {
             getObservation();
         } else{
             setObservation({
-                id: "",
+                id: null,
                 patientId: 0,
                 name: "",
                 type: 0,
-                value: "",
+                value: 0,
                 description: ""
             })
         }
@@ -58,11 +58,11 @@ const EditObservation = ({ id }) => {
                         </div>
                         <div class="form-group">
                             <label htmlFor="namep">Name</label>
-                            <input type="text" class="form-control" id="namep" placeholder="Enter name" value={observation.name} onChange={(event) => setObservation(prevSate => ({ ...prevSate, name: +event.target.value }))} />
+                            <input type="text" class="form-control" id="namep" placeholder="Enter name" value={observation.name} onChange={(event) => setObservation(prevSate => ({ ...prevSate, name: event.target.value }))} />
                         </div>
                         <div class="form-group">
                             <label htmlFor="type">Type</label>
-                            <select id="type" class="form-control" value={observation.type} onChange={(event) => setObservation(prevSate => ({ ...prevSate, type: event.target.value }))} >
+                            <select id="type" class="form-control" value={observation.type} onChange={(event) => setObservation(prevSate => ({ ...prevSate, type: +event.target.value }))} >
                                 <option defaultValue>Choose type</option>
                                 <option value="1">Weight</option>
                                 <option value="2">BloodPressure</option>
@@ -73,7 +73,7 @@ const EditObservation = ({ id }) => {
                         </div>
                         <div class="form-group">
                             <label htmlFor="ovalue">Value</label>
-                            <input type="number" class="form-control" id="ovalue" placeholder="Enter value" value={observation.value} onChange={(event) => setObservation(prevSate => ({ ...prevSate, value: event.target.value }))} />
+                            <input type="number" class="form-control" id="ovalue" placeholder="Enter value" value={observation.value} onChange={(event) => setObservation(prevSate => ({ ...prevSate, value: +event.target.value }))} />
                         </div>
                         <div class="form-group">
                             <label htmlFor="description">Description</label>

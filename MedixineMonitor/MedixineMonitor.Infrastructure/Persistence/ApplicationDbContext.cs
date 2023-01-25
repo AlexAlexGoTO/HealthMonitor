@@ -1,4 +1,5 @@
-﻿using MedixineMonitor.Application.Common.Interfaces;
+﻿using MedixineMonitor.Application.Common.Dto;
+using MedixineMonitor.Application.Common.Interfaces;
 using MedixineMonitor.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
@@ -13,8 +14,8 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
     }
 
     public DbSet<Observation> Observations => Set<Observation>();
-
     public DbSet<SystemAlert> SystemAlerts => Set<SystemAlert>();
+    public DbSet<PatientDto> VW_Patients => Set<PatientDto>();
 
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
     {
@@ -38,6 +39,12 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
             entity.HasIndex(e => e.Id).IsUnique();
             entity.Property(t => t.ItemId).IsRequired();
             entity.Property(t => t.Message).IsRequired();
+        });
+
+        builder.Entity<PatientDto>(e =>
+        {
+            e.HasNoKey();
+            e.ToView("Patients");
         });
 
         base.OnModelCreating(builder);

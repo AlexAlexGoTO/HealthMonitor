@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "VH9SEDcpza+1cvFInzQ/HB6iRM9LuujRjlj8VdkPNLU=",
+  "Source": "MedixineMonitor.Patients",
+  "BasePath": "_content/MedixineMonitor.Patients",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

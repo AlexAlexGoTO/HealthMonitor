@@ -1,8 +1,11 @@
 ﻿using MedixineMonitor.Application.Common.Dto;
+using MedixineMonitor.Application.Common.Interfaces;
 using MedixineMonitor.Application.Observations.Commands;
 using MedixineMonitor.Application.Observations.Queries;
+using MedixineMonitor.Domain.Entities;
 using MedixineMonitor.Presentation.Controllers.Base;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace MedixineMonitor.Presentation.Controllers;
 
@@ -10,6 +13,12 @@ namespace MedixineMonitor.Presentation.Controllers;
 [Route("[controller]")]
 public class ObservationsController : ApiControllerBase
 {
+    private readonly IApplicationDbContext _context;
+    public ObservationsController(IApplicationDbContext context)
+    {
+        _context = context;
+    }
+
     [HttpGet]
     public async Task<ActionResult> Get()
     {

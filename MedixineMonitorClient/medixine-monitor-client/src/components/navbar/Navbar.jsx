@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link, useMatch, useResolvedPath } from "react-router-dom"
 import './navbar.css';
 import { AlertContext } from '../../alert-context';
-import { Alert } from 'react-bootstrap';
 
 export default function Navbar() {
   return (

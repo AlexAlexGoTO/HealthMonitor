@@ -28,6 +28,7 @@ namespace MedixineMonitor.Presentation
             services.AddMemoryCache();
             services.AddFluentValidation()
                 .AddFluentValidationClientsideAdapters();
+            services.AddHttpClient();
 
             //We can have configuration and set default expire time for some items by key
             Dictionary<string, TimeSpan> configuration = new();

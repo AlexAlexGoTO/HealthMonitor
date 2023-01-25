@@ -14,16 +14,13 @@ public class GetObservationsQuery : IRequest<IList<ObservationDto>>
 public class GetObservationsQueryHandler : IRequestHandler<GetObservationsQuery, IList<ObservationDto>>
 {
     private readonly IApplicationDbContext _context;
-    private readonly ICacheStore _cacheStore;
     private readonly IMapper _mapper;
 
     public GetObservationsQueryHandler(
         IApplicationDbContext context, 
-        ICacheStore cacheStore,
         IMapper mapper)
     {
         _context = context;
-        _cacheStore = cacheStore;
         _mapper = mapper;
     }
 

@@ -13,3 +13,6 @@ TODO:
 UPD: 24.01
 1. Fixed alerts in UI, now it's global, added popups and badge counter.
 2. Changed "average" calculation for last 3 observations
+
+UPD: 25.01
+1. Added Patients Microservice
