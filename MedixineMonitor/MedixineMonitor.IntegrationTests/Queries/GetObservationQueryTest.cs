@@ -16,6 +16,7 @@ internal class GetObservationQueryTest : TestBase
         var command = new CreateOrUpdateObservationCommand
         {
             Name = "observationCreatingIntegrationTESTS_2",
+            PatientId = 1,
             Type = HealthMetrics.BloodOxygenSaturation,
             Value = 100,
             Description = "read test" 

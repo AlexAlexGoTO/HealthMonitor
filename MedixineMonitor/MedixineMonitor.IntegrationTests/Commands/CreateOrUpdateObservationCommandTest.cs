@@ -15,6 +15,7 @@ internal class CreateOrUpdateObservationCommandTest : TestBase
         var command = new CreateOrUpdateObservationCommand
         {
             Name = "observationCreatingIntegrationTESTS_1",
+            PatientId = 1,
             Type = HealthMetrics.BloodPressure,
             Value = 100,
             Description = "test test test"

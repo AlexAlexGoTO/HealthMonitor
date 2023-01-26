@@ -26,7 +26,7 @@ const Home = () => {
     </div>
     <p class="mb-1">Was written on .NET vesion 6. SQL server express LocalDB as database. Architecture based on Clean Architecture pattern + CQRS + MediatR.</p>
     <p class="mb-1">Patients run as separate Microservice and using same DB but different Schema. It's "Views between database schemas" approach are used to expose data between schemas (i.e. microservices).
-    This strategy is a good approach for migrating from a monolith to microservices. Communication implemented throught REST.</p>
+    This strategy is a good approach for migrating from a monolith to microservices. Communication implemented throught REST. IntegrationTests and UnitTest were added.</p>
   </a>
 </div>
         </>
