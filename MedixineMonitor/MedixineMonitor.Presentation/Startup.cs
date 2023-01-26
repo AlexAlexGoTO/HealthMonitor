@@ -61,7 +61,7 @@ namespace MedixineMonitor.Presentation
 
             app.MapControllers();
 
-            app.MapHub<BaseAlertHub>("/AlertNotifications");
+            app.MapHub<BaseDataHub>("/monitor-updates");
 
             app.Run();
         }

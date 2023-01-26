@@ -3,11 +3,11 @@ import { useEffect } from 'react';
 
 const API_URL = 'https://localhost:7289'
 
-const EditObservation = ({ id }) => {
+const EditObservation = ({oData}) => {
     const [observation, setObservation] = useState()
 
     const getObservation = async () => {
-        const response = await fetch(`${API_URL}/observations/${id}`);
+        const response = await fetch(`${API_URL}/observations/${oData.selectedRow}`);
         const data = await response.json();
 
         setObservation(data);
@@ -25,7 +25,7 @@ const EditObservation = ({ id }) => {
     }
 
     useEffect(() => {
-        if (id) {
+        if (oData.selectedRow) {
             getObservation();
         } else{
             setObservation({
@@ -37,10 +37,10 @@ const EditObservation = ({ id }) => {
                 description: ""
             })
         }
-    }, [id])
+    }, [oData.selectedRow])
 
     return (
-        <div className="update-observation-form">
+        <div className="update-item-form">
             {observation != null &&
                 <div>
                     {observation.id &&
@@ -53,8 +53,13 @@ const EditObservation = ({ id }) => {
                     }
                     <form>
                         <div class="form-group">
-                            <label htmlFor="patientId">PatientID</label>
-                            <input type="number" class="form-control" id="patientId" placeholder="Enter patientID" value={observation.patientId} onChange={(event) => setObservation(prevSate => ({ ...prevSate, patientId: +event.target.value }))} />
+                            <label htmlFor="patientId">Patient</label>
+                            <select id="patientId" class="form-control" value={observation.patientId} onChange={(event) => setObservation(prevSate => ({ ...prevSate, patientId: +event.target.value }))} >
+                                <option defaultValue>Choose type</option>
+                                {oData.patients.map((patient) => (
+                                    <option key={patient.id} value={patient.id}>{patient.name}</option>
+                                ))}
+                            </select>
                         </div>
                         <div class="form-group">
                             <label htmlFor="namep">Name</label>
@@ -64,11 +69,11 @@ const EditObservation = ({ id }) => {
                             <label htmlFor="type">Type</label>
                             <select id="type" class="form-control" value={observation.type} onChange={(event) => setObservation(prevSate => ({ ...prevSate, type: +event.target.value }))} >
                                 <option defaultValue>Choose type</option>
-                                <option value="1">Weight</option>
-                                <option value="2">BloodPressure</option>
-                                <option value="3">Pulse</option>
-                                <option value="4">Steps</option>
-                                <option value="5">BloodOxygenSaturation</option>
+                                <option value="0">Weight</option>
+                                <option value="1">BloodPressure</option>
+                                <option value="2">Pulse</option>
+                                <option value="3">Steps</option>
+                                <option value="4">BloodOxygenSaturation</option>
                             </select>
                         </div>
                         <div class="form-group">

@@ -2,7 +2,6 @@ import React, { useState, useMemo } from "react";
 import { useEffect } from "react";
 
 import * as signalR from "@microsoft/signalr";
-import {useLocation} from 'react-router-dom';
 
 const API_URL = "https://localhost:7289";
 
@@ -32,15 +31,16 @@ export const AlertContextProvider = (props) => {
 
   useEffect(() => {
     let connection = new signalR.HubConnectionBuilder()
-      .withUrl(`${API_URL}/alertNotifications`, {
+      .withUrl(`${API_URL}/monitor-updates`, {
         skipNegotiation: true,
         transport: signalR.HttpTransportType.WebSockets,
       })
+      .withAutomaticReconnect()
       .build();
 
     connection.start();
 
-    connection.on("channel", (data) => {
+    connection.on("new-alert", (data) => {
       setAlerts((prevSate) => [
         ...prevSate,
         {

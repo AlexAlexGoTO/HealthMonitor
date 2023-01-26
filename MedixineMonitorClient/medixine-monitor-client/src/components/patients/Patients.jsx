@@ -1,59 +1,46 @@
 import React, { useState } from 'react';
 import { useEffect } from 'react';
-import EditObservation from './EditObservation';
-import Observation from './Observation';
-import './observations.css';
+import Patient from './Patient';
+import EditPatient from './EditPatient';
 import * as signalR from "@microsoft/signalr";
 
 const API_URL = 'https://localhost:7289'
 
-const Observations = () => {
+const Patients = () => {
     const [selectedRow, setSelectedRow] = React.useState("-1");
-    const [observations, setObservations] = useState([]);
     const [patients, setPatients] = useState([])
 
-    const getObservations = async () => {
-        const response = await fetch(`${API_URL}/observations`);
-        const data = await response.json();
-
-        setObservations(data);
-    }
-    
     const getPatients = async () => {
         const response = await fetch(`${API_URL}/patients`);
         const data = await response.json();
 
         setPatients(data);
+        console.log(data)
     }
-
+    
     useEffect(() => {
-        getObservations();
-
         getPatients();
 
-        const connection = new signalR.HubConnectionBuilder()
+        let connection = new signalR.HubConnectionBuilder()
             .withUrl(`${API_URL}/monitor-updates`, {
                 skipNegotiation: true,
                 transport: signalR.HttpTransportType.WebSockets,
             })
-            .withAutomaticReconnect()
             .build();
 
         connection.start();
 
-        connection.on("observations-update", (data) => {
-            setObservations(prevState => 
+        connection.on("patients-update", (data) => {
+            setPatients(prevState => 
                 {
-                    const index = prevState.findIndex(o => o.id === data.id);
+                    const index = prevState.findIndex(p => p.id === data.id);
                     if(index > -1) {
                         return prevState.map(item => 
                                     item.id === data.id 
                                     ? {...item, 
-                                        patientId : data.patientId,
                                         name : data.name, 
-                                        type: data.type, 
-                                        value: data.value,
-                                        description: data.description
+                                        age: data.age,
+                                        address: data.address
                                     } 
                                     : item )
                     } else {
@@ -66,37 +53,37 @@ const Observations = () => {
 
     return (
         <div className="row">
-            <div className="itemsList col-md-6">
+            <div className="patientList col-md-6">
                 <table className="table">
                     <thead className="thead-dark">
                         <tr>
-                        <th scope="col">PatientId</th>
+                        <th scope="col">Id</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">Value</th>
-                        <th scope="col">Description</th>
+                        <th scope="col">Age</th>
+                        <th scope="col">Adress</th>
+                        <th scope="col">IsDeleted</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {observations.map((observation) => (
-                            <tr className="data" key={observation.id} onClick={() => setSelectedRow(observation.id)}>
-                                <Observation observation={observation}/>
+                        {patients.map((patient) => (
+                            <tr className="data" key={patient.id} onClick={() => setSelectedRow(patient.id)}>
+                                <Patient patient={patient}/>
                             </tr>
                         ))}
                     </tbody>
                 </table>
             </div>
-            <div className="editObservation col-md-6">
+            <div className="col-md-6">
                 <button onClick={() => setSelectedRow("")} className="btn btn-primary create-item">
                     Create New
                 </button>
                 <button onClick={() => setSelectedRow(-1)} className="btn btn-dark cancel-item">
                     Cancel
                 </button>
-                {selectedRow != -1 && <EditObservation oData={{selectedRow, patients}}/> }
+                {selectedRow != -1 && <EditPatient id={selectedRow}/> }
             </div>
         </div>
     )
 }
 
-export default Observations;
+export default Patients;

@@ -10,9 +10,14 @@ tr.data {
     margin-bottom: 5px;
 }
 
-.update-observation-form {
+.update-item-form {
     padding: 14px;
 }
-.create-observation {
+.create-item {
     margin-left: 14px;
 }
+
+.cancel-item {
+    margin-left: 14px;
+}
+

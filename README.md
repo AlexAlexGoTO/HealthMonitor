@@ -16,3 +16,6 @@ UPD: 24.01
 
 UPD: 25.01
 1. Added Patients Microservice
+
+UPD: 26.01
+1. Converted to real-time app

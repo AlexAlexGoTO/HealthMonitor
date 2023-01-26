@@ -25,7 +25,14 @@ public class PatientService : IPatientService
 
     public async Task<int> UpdateOrCreate(Patient patient)
     {
-        _context.Patients.Add(patient);
+        if (patient.Id == 0)
+        {
+            _context.Patients.Add(patient);
+        }
+        else
+        {
+            _context.Patients.Update(patient);
+        }
 
         await _context.SaveChangesAsync(new CancellationToken());
 

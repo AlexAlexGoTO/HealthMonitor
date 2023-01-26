@@ -2,7 +2,7 @@
 
 namespace MedixineMonitor.Application.Common.Abstraction
 {
-    public class BaseAlertHub : Hub
+    public class BaseDataHub : Hub
     {
     }
 }

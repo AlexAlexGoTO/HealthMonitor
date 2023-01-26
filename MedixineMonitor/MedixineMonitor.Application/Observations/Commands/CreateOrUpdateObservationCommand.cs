@@ -54,10 +54,8 @@ public class CreateOrUpdateObservationCommandHandler : IRequestHandler<CreateOrU
             var resutl = await _context.SaveChangesAsync(cancellationToken);
 
             //publish domain event after commiting transaction
-            if (request.Id == null)
-            {
-                await NotifyIfNeeded(entity);
-            }
+            await NotifyIfNeeded(entity, request.Id);
+            
 
             //Add hub for sending data to ui
 
@@ -69,9 +67,10 @@ public class CreateOrUpdateObservationCommandHandler : IRequestHandler<CreateOrU
         }
     }
 
-    public async Task NotifyIfNeeded(Observation observation)
+    public async Task NotifyIfNeeded(Observation observation, Guid? requestId)
     {
-        await _publisher.Publish(new ObservationCreatedEvent(observation));
+        var operation = requestId == null? ObservationOperation.Add : ObservationOperation.Update;
 
+        await _publisher.Publish(new ObservationsUpdatedEvent(observation, operation));
     }
 }

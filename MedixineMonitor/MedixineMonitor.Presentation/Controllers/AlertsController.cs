@@ -14,11 +14,11 @@ namespace MedixineMonitor.Presentation.Controllers;
 public class AlertsController : ApiControllerBase
 {
     private readonly IAlertService _alertService;
-    private readonly IHubContext<BaseAlertHub> _hubContext;
+    private readonly IHubContext<BaseDataHub> _hubContext;
 
     public AlertsController(
         IAlertService alertService, 
-        IHubContext<BaseAlertHub> hubContext)
+        IHubContext<BaseDataHub> hubContext)
     {
         _alertService = alertService;
         _hubContext = hubContext;

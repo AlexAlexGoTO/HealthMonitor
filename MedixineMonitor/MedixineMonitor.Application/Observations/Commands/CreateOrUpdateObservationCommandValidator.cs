@@ -12,5 +12,7 @@ internal class CreateOrUpdateObservationCommandValidator : AbstractValidator<Cre
             .IsInEnum();
         RuleFor(v => v.Value)
             .GreaterThan(0);
+        RuleFor(v => v.PatientId)
+            .GreaterThan(0);
     }
 }

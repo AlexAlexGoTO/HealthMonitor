@@ -12,10 +12,11 @@ export default function Navbar() {
                   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                       <span class="navbar-toggler-icon"></span>
                   </button>
-                  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                  <div class="collapse navbar-collapse medixine-navbar" id="navbarNavAltMarkup">
                       <div class="navbar-nav">
                         <CustomLink to="/">Home</CustomLink>
                         <CustomLink to="/observations">Observations</CustomLink>
+                        <CustomLink to="/patients">Patients</CustomLink>
                         <CustomLink to="/alerts">
                           Alerts &nbsp;
                           <AlertContext.Consumer>

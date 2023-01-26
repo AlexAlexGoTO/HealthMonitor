@@ -9,23 +9,24 @@ import {
   Link
 } from "react-router-dom";
 import Observations from './components/observations/Observations';
+import Patients from './components/patients/Patients';
 import Alerts from './components/alerts/Alerts';
+import Home from './components/home/Home';
 import { AlertContext, AlertContextProvider } from './alert-context';
 import { Alert } from 'react-bootstrap';
 
 
 const App = () => {
-  const [showAlerts, setShowAlerts] = useState(true);
-
   return (
     <>
       <AlertContextProvider>
         <Navbar />
-        <div className="container">
+        <div className="medixine container">
             <Routes>
                 <Route path="/observations" element={<Observations />}/>
+                <Route path="/patients" element={<Patients />}/>
                 <Route path="/alerts" element={<Alerts />}/>
-                <Route path="/"/>
+                <Route path="/" element={<Home />}/>
             </Routes>
         </div>
         <div className='custom-alerts col-md-12'>

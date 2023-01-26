@@ -2,8 +2,6 @@ import React, { useState, useContext } from 'react';
 import { useEffect } from 'react';
 import { AlertContext } from '../../alert-context';
 
-import * as signalR from '@microsoft/signalr'
-
 const API_URL = 'https://localhost:7289'
 
 const Alerts = () => {
@@ -33,20 +31,14 @@ const Alerts = () => {
     }
 
     useEffect(() => {
+        if(alertContext.alerts.length > 0){
+           setAlerts(prevState => [...prevState, alertContext.alerts[alertContext.alerts.length - 1]]);
+        }
+    }, [alertContext.alerts])
+
+    useEffect(() => {
         alertContext.resetBadgeNumber();
-        // let connection = new signalR.HubConnectionBuilder()
-        // .withUrl(`${API_URL}/alertNotifications`, {
-        //     skipNegotiation: true,
-        //     transport: signalR.HttpTransportType.WebSockets
-        // })
-        // .build();
-
-        // connection.start()
-
-        // connection.on("channel", (data) => {
-        //     setAlerts(prevSate => ([ ...prevSate, data]));
-        // })
-
+        
         getAlerts();
     }, [])
 
@@ -57,13 +49,13 @@ const Alerts = () => {
                     <tr>
                     <th scope="col">PatientId</th>
                     <th scope="col">Message</th>
+                    <th scope="col">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     {alerts.map((alert) => (
                         <tr key={alert.id}>
                             <td>{alert.patientId}</td>
-                            <td>{alert.message}</td>
                             <td>{alert.message}</td>
                             <td><button onClick={() => removeAlert(alert.id)} class="btn btn-dark">Remove</button></td>
                         </tr>
