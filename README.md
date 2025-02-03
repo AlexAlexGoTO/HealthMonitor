@@ -1,4 +1,4 @@
-# Demo system for monitoring patient measurements and generating alerts based on measurement deviations
+# Small demo system for monitoring patient measurements and generating alerts based on measurement deviations
 1. Patients microservice (sync communication)
 2. Main service
 3. Small react app for front-end
