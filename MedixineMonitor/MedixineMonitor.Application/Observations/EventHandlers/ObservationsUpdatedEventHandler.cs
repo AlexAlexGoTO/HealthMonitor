@@ -53,6 +53,7 @@ public class ObservationsUpdatedEventHandler : INotificationHandler<Observations
                 {
                     var avarage = cashedObservation.TakeLast(3).Average();
 
+                    //hardcoded condition 
                     //allowed value is value + 5%
                     var allowedValue = avarage += avarage * 0.05;
 
