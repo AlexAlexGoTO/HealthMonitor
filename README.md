@@ -14,6 +14,7 @@ TODO:
 1. FRONT-END: move web-sockets hub connection to contex, to make it able to receive alerts on any screen.
 2. BACK-END: change inMemoryStore saving for last observations and save only average number
 3. RabbitMQ for communication
+4. Idempotency
 
 UPD: 24.01
 1. Fixed alerts in UI, now it's global, added popups and badge counter.
